@@ -29,7 +29,6 @@
             Comments: () => import('@/components/Form/Comments'),
             Counter: () => import('@/components/Form/Counter'),
             Editable: () => import('@/components/Form/Editable'),
-            example: () => import('@/components/Form/example'),
             Keypad: () => import('@/components/Form/Keypad'),
             Note: () => import('@/components/Form/Note'),
             Pickers: () => import('@/components/Form/Pickers'),

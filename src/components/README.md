@@ -22,7 +22,6 @@
   |_Comments
   |_Counter
   |_Editable
-  |_example
   |_Keypad
   |_Note
   |_Pickers

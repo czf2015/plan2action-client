@@ -35,7 +35,7 @@ export default {
 </script>
 
 
-<style lang="marks" scoped>
+<style lang="less" scoped>
 .marks {
 }
 </style>

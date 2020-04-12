@@ -2,16 +2,16 @@
   <div class="board">
     <h3 class="title">{{title}}</h3>
     <p class="content">{{content}}</p>
-    <Marks />
+    <Marker />
   </div>
 </template>
 
 <script>
-import Marks from './Marks'
+import Marker from './Marker'
 
 export default {
     components: {
-        Marks,
+        Marker,
     },
     props: {
         title: {

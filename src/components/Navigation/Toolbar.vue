@@ -28,7 +28,7 @@ export default {
 </script>
 
 
-<style lang="toolbar" scoped>
+<style lang="less" scoped>
 .toolbar {
 }
 </style>
