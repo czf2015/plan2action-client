@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+        const width = 400
+        const height = 400
+        const svg = d3.select("body") //选择<body> 
+            .append("svg") //在<body>中添加<svg> 
+            .attr("width", width) //设定<svg>的宽度属性 
+            .attr("height", height); //设定<svg>的高度属性
+
+        //四个字母
+        var characters = ["A", "S", "D", "F"];
+        //绘制四个矩形
+        var rects = svg.selectAll("rect")
+            .data(characters)
+            .enter()
+            .append("rect")
+            .attr("x", (d, i) => 10 + i * 60)
+            .attr("y", 150)
+            .attr("width", 55)
+            .attr("height", 55)
+            .attr("rx", 5)
+            .attr("ry", 5)
+            .attr("fill", "black");
+        //绘制四个文字
+        var texts = svg.selectAll("text")
+            .data(characters)
+            .enter()
+            .append("text")
+            .attr("x", (d, i) => 10 + i * 60)
+            .attr("y", 150)
+            .attr("dx", 10)
+            .attr("dy", 25)
+            .attr("fill", "white")
+            .attr("font-size", 24)
+            .text(d => d);
+
+        d3.select('body')
+            .on("keydown", () => { //keydown事件的监听器 
+                rects.attr("fill", (d) => {
+                    if (d == String.fromCharCode(d3.event.keyCode)) { //如果所按下的键与此rect元素上绑定的数据d相同，则返回黄色 
+                        return "yellow";
+                    } else { //否则返回黑色 
+                        return "black";
+                    }
+                });
+            })
+            .on("keyup", () => { //keyup事件的监听器 
+                rects.attr("fill", "black");
+            });
+    </script>
+</body>
+
+</html>

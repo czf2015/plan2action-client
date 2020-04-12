@@ -1,0 +1,29 @@
+{
+    "block": {
+        "root": {
+            "id": "root",
+            "type": "Root",
+            "data": {},
+            "childBlocks": [
+                {
+                    "type": "Banner",
+                    "data": {}
+                },
+                {
+                    "type": "Recommend",
+                    "data": {}
+                },
+                {
+                    "type": "ProductPanel",
+                    "data": {
+                        "content": {}
+                    }
+                },
+                {
+                    "type": "MyNatural",
+                    "data": {}
+                }
+            ]
+        }
+    }
+}

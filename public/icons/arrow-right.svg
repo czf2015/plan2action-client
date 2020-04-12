@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="21px" viewBox="0 0 12 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Icon/左备份</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M16.8800663,2.26828992 C17.2300663,2.61828992 17.2300663,3.19128992 16.8800663,3.54128992 L8.17009668,12.2497899 L16.869273,21.1426862 C17.219273,21.4916862 17.219273,22.0636862 16.869273,22.4146862 C16.519273,22.7646862 15.947273,22.7646862 15.597273,22.4146862 L6.26159668,12.8720753 C5.91159668,12.5220753 5.91159668,11.9490753 6.26159668,11.5990753 C6.29253102,11.568141 6.32519956,11.5399407 6.35929575,11.5144746 L15.6080663,2.26828992 C15.9570663,1.91828992 16.5290663,1.91828992 16.8800663,2.26828992 Z" id="path-1"></path>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="服务公告备份" transform="translate(-526.000000, -2209.000000)">
+            <g id="分组-15-copy-3" transform="translate(206.000000, 2193.000000)">
+                <g id="Icon/左" transform="translate(326.000000, 26.000000) scale(-1, 1) translate(-326.000000, -26.000000) translate(314.000000, 14.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Icon/左备份" fill="#333333" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

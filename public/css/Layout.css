@@ -1,0 +1,139 @@
+.page {}
+
+.header {}
+
+.main {}
+
+.footer {}
+
+.aside {}
+
+.section {}
+
+.dir {}
+
+.subject {
+    height: .75rem;
+    font-size: .28rem;
+    letter-spacing: .05em;
+    color: #fff;
+    background-color: rgb(9, 11, 148);
+}
+
+.article {}
+
+.title {}
+
+.subtitle {}
+
+.content {}
+
+.paragraph {}
+
+.summary {}
+
+.details {}
+
+.separator {}
+
+.feed {}
+
+.banner {}
+
+.toolbar {}
+
+
+/** Flexbox centering
+ * Horizontally and vertically centers a child element within a parent element using flexbox.
+
+ > Explanation
+
+ 1. display: flex enables flexbox.
+
+ 2. justify-content: center centers the child horizontally.
+
+ 3. align-items: center centers the child vertically.
+
+ */
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inline {
+    display: inline;
+}
+
+.block {
+    display: block;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.cell {
+    display: table-cell;
+}
+
+.none {
+    display: none;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+
+/** Ensures that an element self-clears its children.
+
+ > Explanation
+
+ 1. .clearfix::after defines a pseudo-element.
+
+ 2. content: '' allows the pseudo-element to affect layout.
+
+ 3. clear: both indicates that the left, right or both sides of the element cannot be adjacent to earlier floated elements within the same block formatting context.
+ */
+
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.relative {
+    position: relative;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.flex {
+    display: flex;
+}
+
+.fl-x {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: auto;
+}
+
+.fl-y {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}

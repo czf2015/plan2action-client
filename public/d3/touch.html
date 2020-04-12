@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+        const width = 400
+        const height = 400
+        const svg = d3.select("body") //选择<body> 
+            .append("svg") //在<body>中添加<svg> 
+            .attr("width", width) //设定<svg>的宽度属性 
+            .attr("height", height); //设定<svg>的高度属性
+
+        var circle = svg.append("circle")
+            .attr("cx", 150)
+            .attr("cy", 200)
+            .attr("r", 50)
+            .attr("fill", "blue")
+            .on("touchstart", function () { //touchstart事件的监听器 
+                d3.select(this)
+                    .attr("fill", "yellow");
+            })
+            .on("touchmove", function () { //touchmove事件的监听器 
+                var pos = d3.touches(this)[0]; //获取第一个触摸点 
+                d3.select(this)
+                    .attr("cx", pos[0]) //触摸点的x坐标 
+                    .attr("cy", pos[1]); //触摸点的y坐标 
+            })
+            .on("touchend", function () { //touchend事件的监听器 
+                d3.select(this).attr("fill", "blue");
+            });
+    </script>
+</body>
+
+</html>

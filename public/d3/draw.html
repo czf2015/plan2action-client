@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>draw</title>
+</head>
+
+<body>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+        const width = 400
+        const height = 400
+        const svg = d3.select("body") //选择<body> 
+            .append("svg") //在<body>中添加<svg> 
+            .attr("width", width) //设定<svg>的宽度属性 
+            .attr("height", height); //设定<svg>的高度属性
+
+        //线段的点数据，每一项是一个点的x和y坐标
+        var lines = [[80, 80], [200, 100], [200, 200], [100, 200]];
+        //创建一个线段生成器
+        var linePath = d3.svg.line()
+            // 线段生成器是有插值模式的，根据模式的不同，线段的形式（路径）会发生很大的变化。
+            // 共有13种模式，如linear、linear-closed、step、basis、bundle、cardinal、monotone。
+            // .interpolate('linear') // 默认
+            // .interpolate('basis')
+            .interpolate('step')
+
+        //添加路径
+        svg.append("path")
+            .attr("d", linePath(lines)) //使用了线段生成器 
+            .attr("stroke", "black")
+            .attr("stroke-width", "3px")
+            .attr("fill", "none");
+    </script>
+</body>
+
+</html>

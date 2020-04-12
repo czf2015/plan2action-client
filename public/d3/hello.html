@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Cat</p>
+    <p>Dog</p>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+        const p = d3.select("body") //选择<body> 
+            .selectAll("p") //选择<body>里所有的<p> 
+            .text("Hello, World"); //将文字更改为Hello, World
+        p.style("color", "red"); //将文字颜色更改为红色
+        p.style("font-size", "72px"); //将文字大小更改为72px
+
+        var width = 400; //SVG绘制区域的宽度
+        var height = 400; //SVG绘制区域的高度
+        var svg = d3.select("body") //选择<body> 
+            .append("svg") //在<body>中添加<svg> 
+            .attr("width", width) //设定<svg>的宽度属性 
+            .attr("height", height); //设定<svg>的高度属性
+        svg.append("circle") //在<svg>中添加<circle>标签 
+            .attr("cx", "50px") //设置属性cx的值为50px
+            .attr("cy", "50px") //设置属性cy的值为50px 
+            .attr("r", "50px") //设置属性r的值为50px 
+            .attr("fill", "red");//设置属性fill的值为red
+    </script>
+</body>
+
+</html>

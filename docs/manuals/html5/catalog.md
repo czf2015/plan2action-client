@@ -1,0 +1,1 @@
+- [JS中document对象 && window对象](https://blog.csdn.net/qq_33242126/article/details/80313489)

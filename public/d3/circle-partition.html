@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .nodeText {
+            writing-mode: tb;
+            font-family: simsun;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+        const width = 400
+        const height = 400
+        const svg = d3.select("body") //选择<body> 
+            .append("svg") //在<body>中添加<svg> 
+            .attr("width", width) //设定<svg>的宽度属性 
+            .attr("height", height); //设定<svg>的高度属性
+
+        const radius = width / 2
+        var partition = d3.layout.partition()
+            .sort(null)
+            .size([2 * Math.PI, radius * radius])
+            .value(function (d) { return 1; });
+
+        d3.json("/data/city.json", function (error, root) {
+            if (error) console.log(error);
+            console.log(root);
+            var nodes = partition.nodes(root);
+            var links = partition.links(nodes);
+            console.log(nodes);
+
+            var arc = d3.svg.arc()
+                .startAngle(function (d) { return d.x; })
+                .endAngle(function (d) { return d.x + d.dx; })
+                .innerRadius(function (d) { return Math.sqrt(d.y); })
+                .outerRadius(function (d) { return Math.sqrt(d.y + d.dy); });
+
+            var color = d3.scale.category10();
+            var gArcs = svg.selectAll("g")
+                .data(nodes)
+                .enter()
+                .append("g");
+            gArcs.append("path")
+                .attr("display", function (d) { //圆中心的弧不绘制 
+                    return d.depth ? null : "none";
+                })
+                .attr("d", arc) //使用弧生成器 
+                .style("stroke", "#fff")
+                .style("fill", function (d) {
+                    return color((d.children ? d : d.parent).name);
+                });
+            gArcs.append("text")
+                .attr("class", "nodeText")
+                .attr("dy", ".5em")
+                .attr("transform", function (d, i) {
+                    if (i !== 0) {  //除圆中心的文字外，都进行平移旋转 
+                        var r = d.x + d.dx / 2;
+                        //旋转角度 
+                        //超过180°的文字调整旋转角度，防止文字是倒的 
+                        var angle = Math.PI / 2;
+                        r += r < Math.PI ? (angle * -1) : angle;
+                        r *= 180 / Math.PI;
+                        return "translate(" + arc.centroid(d) + ")" + "rotate(" + r + ")";
+                    }
+                })
+                .text(function (d, i) { return d.name; });
+        })
+
+
+    </script>
+</body>
+
+</html>

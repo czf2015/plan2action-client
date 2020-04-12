@@ -1,0 +1,28 @@
+<template>
+    <section id="test-test">
+    </section>
+</template>
+
+
+<script>
+    // import from ''
+
+    export default {
+        props: {
+        },
+
+        data() {
+            return {
+            }
+        },
+
+        mounted() {
+        }
+    }
+</script>
+
+
+<style scoped>
+#test-test {
+}
+</style>

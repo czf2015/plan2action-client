@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>indexedDB</title>
+    <script src="../../browser/DB.js"></script>
+</head>
+
+<body>
+    <script>
+        // const db = new DB('test-indexedDB')
+        // const table = db.create(db, 'person', 'name', {
+        //     name: {
+        //         value: 'czf',
+        //         config: {
+        //             unique: true
+        //         }
+        //     },
+        //     age: {
+        //         value: 33,
+        //         config: {
+        //             unique: false
+        //         }
+        //     },
+        // })
+        // console.log(table)
+
+        open('test-indexedDB', '1').then(db => {
+            const table = create(db, 'person', 'name', {
+                name: {
+                    value: 'czf',
+                    config: {
+                        unique: true
+                    }
+                },
+                age: {
+                    value: 33,
+                    config: {
+                        unique: false
+                    }
+                },
+            })
+            console.log(table)
+        })
+    </script>
+</body>
+
+</html>

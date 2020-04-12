@@ -1,0 +1,10 @@
+<svg width="300" height="300" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <!-- 直线 -->
+    <!-- <path d="M30,100 L270,300 M30,100 H270 M30,100 V300" style="stroke:black; stroke-width:3 "/> -->
+    <!-- 二次贝塞尔曲线 -->
+    <path d="M30,100 Q190,20 270,100 T450,100 T600,100 T750,100" style="fill:white; stroke:black; stroke-width:3 "/>
+    <!-- 三次贝塞尔曲线 -->
+    <!-- <path d="M30,100 C100,20 190,20 270,100 S400,180 450,100" style="fill:white; stroke:black; stroke-width:3 "/>
+    <!-- 弧线 -->
+    <path d="M100,200 a200,150 0 1,0 150,-150 Z" fill="yellow" stroke="blue" stroke-width="4" /> -->
+</svg>

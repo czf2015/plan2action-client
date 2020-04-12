@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>scatter</title>
+    <style>
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+
+        .axis text {
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+        const width = 400
+        const height = 400
+        const svg = d3.select("body") //选择<body> 
+            .append("svg") //在<body>中添加<svg> 
+            .attr("width", width) //设定<svg>的宽度属性 
+            .attr("height", height); //设定<svg>的高度属性
+
+        //圆心数据
+        var center = [
+            [0.5, 0.5], [0.7, 0.8], [0.4, 0.9],
+            [0.11, 0.32], [0.88, 0.25], [0.75, 0.12],
+            [0.5, 0.1], [0.2, 0.3], [0.4, 0.1], [0.6, 0.7]
+        ];
+
+        const xAxisWidth = 400
+        const yAxisWidth = 400
+        //x轴比例尺
+        var xScale = d3.scale.linear()
+            .domain([0, 1.2 * d3.max(center, d => d[0])])
+            .range([0, xAxisWidth]);
+        //y轴比例尺
+        var yScale = d3.scale.linear()
+            .domain([0, 1.2 * d3.max(center, d => d[1])])
+            .range([0, yAxisWidth]);
+
+        //外边框
+        var padding = { top: 30, right: 30, bottom: 30, left: 30 };
+        //绘制圆
+        var cirlce = svg.selectAll("circle")
+            .data(center) //绑定数据 
+            .enter() //获取enter部分 
+            .append("circle") //添加circle元素，使其与绑定数组的长度一致 
+            .attr("fill", "black") //设置颜色为black 
+            .attr("cx", d => padding.left + xScale(d[0])) //设置圆心的x坐标 
+            .attr("cy", d => height - padding.bottom - yScale(d[1])) //设置圆心的y坐标 
+            .attr("r", 5)
+
+        //x轴
+        var xAxis = d3.svg.axis()
+            .scale(xScale)
+            .orient("bottom");
+        svg.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(" + padding.left + "," + (height - padding.bottom) + ")")
+            .call(xAxis);
+        //重新设置y轴比例尺的值域，与原来的相反
+        yScale.range([yAxisWidth, 0]);
+        //y轴
+        var yAxis = d3.svg.axis()
+            .scale(yScale)
+            .orient("left");
+        svg.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(" + padding.left + "," + (- padding.top) + ")")
+            .call(yAxis)
+    </script>
+</body>
+
+</html>

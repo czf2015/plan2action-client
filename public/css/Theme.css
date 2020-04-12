@@ -1,0 +1,50 @@
+button {
+
+}
+
+button.red {
+
+}
+
+button.blue {
+
+}
+
+button.green {
+
+}
+
+.link {
+
+}
+
+.link:hover {
+
+}
+
+.link:active {
+
+}
+
+.link:visited {
+
+}
+
+/* [shape="circle"] {
+
+}
+
+[shape="circle"] {
+    
+} */
+
+.text {
+    display: block;
+    width: 100%;
+    height: 300px;
+    overflow: visible;
+    outline: none;
+    resize: none;
+    border: none;
+    background-color: transparent;
+}

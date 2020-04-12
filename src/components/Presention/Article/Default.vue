@@ -1,0 +1,41 @@
+<template>
+  <article>
+    <slot />
+  </article>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style scoped>
+article {
+  padding: 0.2rem 0.3rem;
+}
+
+section {
+  margin-top: 15px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 0.48rem;
+}
+
+h1 > span {
+  color: rgba(0, 196, 243, 1);
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3,
+p,
+ul {
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: normal;
+}
+</style>

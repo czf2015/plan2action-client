@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transition</title>
+    <style>
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+
+        .axis text {
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+    </style>
+</head>
+
+<body>
+    <button type="button" onclick="update()"> 更新 </button>
+    <button type="button" onclick="add()"> 增加 </button>
+    <button type="button" onclick="sub()"> 减少 </button>
+
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+        var center = [
+            [0.5, 0.5], [0.7, 0.8], [0.4, 0.9],
+            [0.11, 0.32], [0.88, 0.25], [0.75, 0.12],
+            [0.5, 0.1], [0.2, 0.3], [0.4, 0.1],
+            [0.6, 0.7]
+        ];
+
+        var width = 500; //SVG绘制区域的宽度
+        var height = 500; //SVG绘制区域的高度
+        var svg = d3.select("body") //选择<body> 
+            .append("svg") //在<body>中添加<svg> 
+            .attr("width", width) //设定<svg>的宽度属性 
+            .attr("height", height);//设定<svg>的高度属性
+        //外边框
+        var padding = { top: 30, right: 30, bottom: 30, left: 30 };
+
+        //x轴宽度
+        var xAxisWidth = 300;
+        //y轴宽度
+        var yAxisWidth = 300;
+        //x轴比例尺
+        var xScale = d3.scale.linear()
+            .domain([0, 1])
+            .range([0, xAxisWidth]);
+        //y轴比例尺
+        var yScale = d3.scale.linear()
+            .domain([0, 1])
+            .range([0, yAxisWidth]);
+
+
+        function drawCircle() {
+            //绑定数据，获取update部分
+            var circleUpdate = svg.selectAll("circle")
+                .data(center); //绑定数据
+            //获取enter部分
+            var circleEnter = circleUpdate.enter();
+            //获取exit部分
+            var circleExit = circleUpdate.exit();
+            //1. update部分的处理办法
+            //使用过渡的方式，缓缓移动到新坐标位置
+            circleUpdate.transition() //更新数据时启动过渡 
+                .duration(500)
+                .attr("cx", d => padding.left + xScale(d[0])) //新的x坐标
+                .attr("cy", d => height - padding.bottom - yScale(d[1])) //新的y坐标
+            //2. enter部分的处理办法
+            //插入圆到坐标原点，然后再过渡到目标点
+            circleEnter.append("circle") //添加元素
+                .attr("fill", "black")
+                .attr("cx", padding.left) //过渡前的x坐标 
+                .attr("cy", height - padding.bottom) //过渡前的y坐标 
+                .attr("r", 7).transition() //启动添加元素时的过渡 
+                .duration(500) //设定过渡时间 
+                .attr("cx", d => padding.left + xScale(d[0])) //过渡后的x坐标
+                .attr("cy", d => height - padding.bottom - yScale(d[1])) //过渡后的y坐标
+            //3. exit部分的处理办法
+            //慢慢变成白色，最后删除
+            circleExit.transition() //删除数据时启动过渡 
+                .duration(500) //时间为500ms 
+                .attr("fill", "white") //设定过渡目标 
+                .remove();
+        }
+
+        function drawAxis() {
+            //x轴的生成器
+            var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient("bottom")
+                .ticks(5);
+            //重定义y轴比例尺的值域
+            yScale.range([yAxisWidth, 0]);
+            //y轴的生成器
+            var yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient("left")
+                .ticks(5);
+            //绘制x轴
+            svg.append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(" + padding.left + "," + (height - padding.bottom) + ")")
+                .call(xAxis);
+            //绘制y轴
+            svg.append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(" + padding.left + "," + (height - padding.bottom - yAxisWidth) + ")")
+                .call(yAxis);
+            //绘制完坐标轴后将值域变回去
+            yScale.range([0, yAxisWidth]);
+        }
+
+        //更新
+        function update() {
+            for (var i = 0; i < center.length; i++) { //对于每一个点 
+                center[i][0] = Math.random(); //更新x坐标 
+                center[i][1] = Math.random(); //更新y坐标
+            }
+            drawCircle(); //重绘
+        }
+        //添加
+        function add() {
+            center.push([Math.random(), Math.random()]); //添加新点 
+            drawCircle();
+        }
+        //删除
+        function sub() {
+            center.pop(); //删除center数组中的最后一个点 
+            drawCircle(); //重绘
+        }
+
+        drawAxis()
+    </script>
+</body>
+
+</html>

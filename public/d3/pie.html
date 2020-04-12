@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+        const width = 400
+        const height = 400
+        const svg = d3.select("body") //选择<body> 
+            .append("svg") //在<body>中添加<svg> 
+            .attr("width", width) //设定<svg>的宽度属性 
+            .attr("height", height); //设定<svg>的高度属性
+
+        var dataset = [["小米", 60.8], ["三星", 58.4], ["联想", 47.3], ["苹果", 46.6], ["华为", 41.3], ["酷派", 40.1], ["其他", 111.5]];
+        var pie = d3.layout.pie() //创建饼状图布局 
+            // .startAngle(Math.PI * 0.2)
+            // .endAngle(Math.PI * 1.5)
+            .value(d => d[1]); //值访问器
+        //dataset为初始数据，piedata为转换后的数据
+        var piedata = pie(dataset);
+        console.log(piedata); //输出转换后的数据
+
+        //外半径和内半径
+        var outerRadius = width / 3;
+        var innerRadius = 0;
+        //创建弧生成器
+        var arc = d3.svg.arc()
+            .innerRadius(innerRadius)
+            .outerRadius(outerRadius);
+        var color = d3.scale.category20();
+
+        //添加对应数目的弧组，即<g>元素
+        var arcs = svg.selectAll("g")
+            .data(piedata) //绑定转换后的数据piedata 
+            .enter()
+            .append("g")
+            .attr("transform", "translate(" + (width / 2) + "," + (height / 2) + ")");
+
+        //添加弧的路径元素
+        arcs.append("path")
+            .attr("fill", (d, i) => color(i)) //设定弧的颜色
+            .attr("d", d => arc(d)) //使用弧生成器获取路径
+
+        //添加弧内的文字元素
+        arcs.append("text")
+            .attr("transform", d => {
+                var x = arc.centroid(d)[0] * 1.4; //文字的x坐标 
+                var y = arc.centroid(d)[1] * 1.4; //文字的y坐标 
+                return "translate(" + x + "," + y + ")";
+            })
+            .attr("text-anchor", "middle")
+            .text(d => {
+                //计算市场份额的百分比 
+                var percent = Number(d.value) / d3.sum(dataset, d => d[1]) * 100;
+                //保留1位小数点，末尾加一个百分号返回 
+                return percent.toFixed(1) + "%";
+            });
+
+        //添加连接弧外文字的直线元素
+        arcs.append("line")
+            .attr("stroke", "black")
+            .attr("x1", d => arc.centroid(d)[0] * 2)
+            .attr("y1", d => arc.centroid(d)[1] * 2)
+            .attr("x2", d => arc.centroid(d)[0] * 2.2)
+            .attr("y2", d => arc.centroid(d)[1] * 2.2);
+        //添加弧外的文字元素
+        arcs.append("text")
+            .attr("transform", d => {
+                var x = arc.centroid(d)[0] * 2.5;
+                var y = arc.centroid(d)[1] * 2.5;
+                return "translate(" + x + "," + y + ")";
+            })
+            .attr("text-anchor", "middle")
+            .text(d => d.data[0]);
+    </script>
+</body>
+
+</html>

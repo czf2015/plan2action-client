@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .province {
+            stroke: black;
+            stroke-width: 1px;
+        }
+
+        .southchinasea {
+            stroke: black;
+            stroke-width: 1px;
+            fill: red;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="/vendors/topojson.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+        const width = 400
+        const height = 400
+        const svg = d3.select("body") //选择<body> 
+            .append("svg") //在<body>中添加<svg> 
+            .attr("width", width) //设定<svg>的宽度属性 
+            .attr("height", height); //设定<svg>的高度属性
+
+        //定义地图的投影
+        var projection = d3.geo.mercator()
+            .center([107, 31])
+            .scale(600)
+            .translate([width / 2, height / 2]);
+        //定义地理路径生成器
+        var path = d3.geo.path()
+            .projection(projection); //设定投影
+        //颜色比例尺
+        var color = d3.scale.category20();
+
+        d3.json("china.topojson", function (error, toporoot) {
+            if (error) return console.error(error);
+            //输出china.topojson的对象 
+            console.log(toporoot);
+            //将TopoJSON对象转换成GeoJSON，保存在georoot中 
+            var georoot = topojson.feature(toporoot, toporoot.objects.ne_10m_admin_1_states_provinces);
+            //输出GeoJSON对象 
+            console.log(georoot);
+
+            var groups = svg.append("g");
+            groups.selectAll("path")
+                .data(georoot.features)
+                .enter()
+                .append("path")
+                .attr("class", "province")
+                .style("fill", function (d, i) { return color(i); })
+                .attr("d", path);
+
+            /** 调用topojson.merge将TopoJSON格式的对象（topojson） 转换成GeoJSON格式的对象（georoot）。 **/
+            //东南各省名称的集合 
+            var southeast = d3.set(["广东", "海南", "福建", "浙江", "江西", "江苏", "台湾", "上海", "香港", "澳门"]);
+            //合并东南各省 
+            var mergedPolygon = topojson.merge(toporoot, toporoot.objects.ne_10m_admin_1_states_provinces.geometries.filter(d => southeast.has(d.properties.name)))
+            //输出合并结果 
+            console.log(mergedPolygon);
+
+            //绘制除了东南各省之外的中国地图，颜色为灰色
+            var groups = svg.append("g");
+            groups.selectAll("path")
+                .data(georoot.features.filter(d => !southeast.has(d.properties.name)))
+                .enter()
+                .append("path")
+                .attr("class", "province")
+                .style("fill", "#ccc")
+                .attr("d", path);
+            //绘制东南各省，颜色为蓝色
+            svg.append("path")
+                .datum(mergedPolygon)
+                .attr("class", "province")
+                .style("fill", "blue")
+                .attr("d", path);
+
+            var boundary = topojson.mesh(toporoot, toporoot.objects.ne_10m_admin_1_states_provinces, (a, b) => a.properties.name === "西藏" && b.properties.name === "新疆");
+            console.log(boundary);
+
+            svg.append("path")
+                .datum(boundary)
+                .attr("class", "boundary")
+                .attr("d", path);
+
+            var neighbors = topojson.neighbors(toporoot.objects.ne_10m_admin_1_states_provinces.geometries);
+            console.log(neighbors);
+
+            var groups = svg.append("g"); var paths = groups.selectAll("path")
+                .data(georoot.features)
+                .enter()
+                .append("path")
+                .attr("class", "province")
+                .style("fill", "#ccc")
+                .attr("d", path);
+
+            paths.each(function (d, i) { //为每一个元素添加相邻省份的选择集 
+                d.neighbors = d3.selectAll(neighbors[i].map(function (j) { return paths[0][j]; }));
+            })
+                .on("mouseover", function (d, i) { //鼠标移入后，变色 
+                    d3.select(this).style("fill", "red");
+                    d.neighbors.style("fill", "steelblue");
+                })
+                .on("mouseout", function (d, i) { //鼠标移出后，变回原来的颜色 
+                    d3.select(this).style("fill", "#ccc");
+                    d.neighbors.style("fill", "#ccc");
+                });
+        });
+
+    </script>
+</body>
+
+</html>
