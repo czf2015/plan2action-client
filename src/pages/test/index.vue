@@ -1,4 +1,3 @@
-
 <template>
     <Layout :loading="loading">
         <component v-for="({id, type, componentName, data}) in list" :key="id || type" :is="componentName" :data="data" />
@@ -18,7 +17,6 @@
 
             Banner: () => import('./business/Banner'),
             Test: () => import('./business/Test'),
-            OtherTest: () => import('./business/OtherTest'),
         },
 
         data() {
@@ -34,14 +32,13 @@
 
         created() {
             const path = location.pathname.includes("preview")
-            ? "/test_preview.json"
-            : "/test.json";
+                ? "/test_preview.json"
+                : "/test.json";
             this.loading = true;
             asyncData(path).then(data => {
-            this.loading = false;
-            this.list = adapter(data.block.root.childBlocks);
+                this.loading = false;
+                this.list = adapter(data.block.root.childBlocks);
             });
         }
     };
 </script>
-

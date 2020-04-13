@@ -1,6 +1,8 @@
-module.exports = (page, component) => {
+module.exports = (page, component, partials) => {
     const id = `${page}-${component.replace(/[A-Z]/, c => c.toLowerCase())}`
-    return (
+
+    if (typeof partials === 'undefined') {
+        return (
 `<template>
     <section id="${id}">
     </section>
@@ -8,10 +10,14 @@ module.exports = (page, component) => {
 
 
 <script>
-    // import from ''
+    // import  from ''
 
     export default {
         props: {
+            data: {
+                type: Object,
+                required: true
+            }
         },
 
         data() {
@@ -26,8 +32,54 @@ module.exports = (page, component) => {
 
 
 <style scoped>
-#${id} {
-}
+    #${id} {
+    }
 </style>`
-    )
+        )
+    } else {
+        // 
+        return (
+`<template>
+    <section id="${id}">
+        <component v-for="({id, type, componentName, data}) in list" :key="id || type" :is="componentName" :data="data" />
+    </section>
+</template>
+
+
+<script>
+    import adapter from "./adapter";
+
+    export default {
+        components: {
+${partials.filter(component => typeof component === 'string')
+    .map(componentName => `
+            ${componentName}: () => import('./partials/${componentName}'),`
+).join('')}
+        },
+
+        props: {
+            data: {
+                type: Object,
+                required: true
+            }
+        },
+
+        data() {
+            return {
+                list: adapter(this.data)
+            };
+        },
+
+        mounted() {
+        }
+    }
+</script>
+
+
+<style scoped>
+    #${id} {
+    }
+</style>`
+        )
+    }
 }

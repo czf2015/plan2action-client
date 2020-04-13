@@ -3,6 +3,12 @@
     "business": [
         "Banner",
         "Test",
-        "OtherTest"
+        {
+            "name": "OtherTest",
+            "partials": [
+                "Sec1",
+                "Sec2"
+            ]
+        }
     ]
 }

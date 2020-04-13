@@ -5,10 +5,14 @@
 
 
 <script>
-    // import from ''
+    // import  from ''
 
     export default {
         props: {
+            data: {
+                type: Object,
+                required: true
+            }
         },
 
         data() {
@@ -23,6 +27,6 @@
 
 
 <style scoped>
-#test-banner {
-}
+    #test-banner {
+    }
 </style>

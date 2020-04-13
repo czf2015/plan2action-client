@@ -1,6 +1,8 @@
-module.exports = component => {
+module.exports = (component, partials) => {
     const cls = component.replace(/[A-Z]/, c => c.toLowerCase())
-    return (
+
+    if (typeof partials === 'undefined') {
+        return (
 `<template>
     <div class="${cls}">
     </div>
@@ -8,7 +10,7 @@ module.exports = component => {
 
 
 <script>
-    // import from ''
+    import adapter from "./adapter";
 
     export default {
         props: {
@@ -26,8 +28,56 @@ module.exports = component => {
 
 
 <style scoped>
-.${cls} {
-}
+    .${cls} {
+    }
 </style>`
-    )
+        )
+    } else {
+        return (
+`<template>
+    <dic class="${cls}">
+        <component v-for="({id, type, componentName, data}) in list" :key="id || type" :is="componentName" :data="data" />
+    </dic>
+</template>
+
+
+<script>
+    import adapter from "./adapter";
+
+    export default {
+        components: {
+${partials.filter(component => typeof component === 'string')
+    .map(componentName => `
+            ${componentName}: () => import('./partials/${componentName}'),`
+).join('')}
+        },
+
+        props: {
+            data: {
+                type: Object,
+                required: true
+            }
+        },
+
+        data() {
+            return {
+                list: adapter(this.data)
+            };
+        },
+
+        methods: {
+        },
+
+        mounted() {
+        }
+    };
+</script>
+
+
+<style scoped>
+    .${cls} {
+    }
+</style>`
+        )
+    }
 }

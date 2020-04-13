@@ -1,6 +1,5 @@
 module.exports = (page, components) => 
-`
-<template>
+`<template>
     <Layout :loading="loading">
         <component v-for="({id, type, componentName, data}) in list" :key="id || type" :is="componentName" :data="data" />
     </Layout>
@@ -16,7 +15,8 @@ module.exports = (page, components) =>
     export default {
         components: {
             Layout,
-${components.map(componentName => `
+${components.filter(component => typeof component === 'string')
+    .map(componentName => `
             ${componentName}: () => import('./business/${componentName}'),`
 ).join('')}
         },
@@ -34,15 +34,13 @@ ${components.map(componentName => `
 
         created() {
             const path = location.pathname.includes("preview")
-            ? "/${page}_preview.json"
-            : "/${page}.json";
+                ? "/${page}_preview.json"
+                : "/${page}.json";
             this.loading = true;
             asyncData(path).then(data => {
-            this.loading = false;
-            this.list = adapter(data.block.root.childBlocks);
+                this.loading = false;
+                this.list = adapter(data.block.root.childBlocks);
             });
         }
     };
-</script>
-
-`
+</script>`

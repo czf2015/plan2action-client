@@ -1,8 +1,8 @@
 <template>
   <Layout :loading="loading">
     <pre v-html="renderHTML({title: 'richText', content: 'red'})" />
-    <ul class="fl-x subject">
-      <li style="background-image: url(/icons/arrow-right.svg)">block</li>
+    <ul class="fl-x">
+      <li style="background-image: url(/icons/arrow-right.svg); background-repeat: no-repeat; background-size: contain">block</li>
       <li>block</li>
       <li>block</li>
       <li>block</li>

@@ -11,12 +11,6 @@ const components = {
             return data
         }
     },
-    OtherTest: {
-        componentName: 'OtherTest',
-        convert(data) {
-            return data
-        }
-    },
 }
 
 
