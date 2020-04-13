@@ -10,10 +10,12 @@ module.exports = (component, partials) => {
 
 
 <script>
-    import adapter from "./adapter";
-
     export default {
         props: {
+            data: {
+                type: Object,
+                // required: true
+            }
         },
 
         data() {
@@ -36,7 +38,7 @@ module.exports = (component, partials) => {
         return (
 `<template>
     <dic class="${cls}">
-        <component v-for="({id, type, componentName, data}) in list" :key="id || type" :is="componentName" :data="data" />
+        <component v-for="item in list" :key="item.id || item.type" :is="item.componentName" :data="item.data" />
     </dic>
 </template>
 
@@ -57,14 +59,14 @@ ${partials.map(partial => typeof partial === 'string'
         props: {
             data: {
                 type: Object,
-                required: true
+                // required: true
             }
         },
 
-        data() {
-            return {
-                list: adapter(this.data)
-            };
+        computed: {
+            list() {
+                return adapter(this.data.childBlocks)
+            }
         },
 
         methods: {

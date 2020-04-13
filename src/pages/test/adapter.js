@@ -1,20 +1,20 @@
 const components = {
     Banner: {
         componentName: 'Banner',
-        convert(data) {
-            return data
+        convert(data, childBlocks) {
+            return {...data, childBlocks}
         }
     },
     Test: {
         componentName: 'Test',
-        convert(data) {
-            return data
+        convert(data, childBlocks) {
+            return {...data, childBlocks}
         }
     },
     OtherTest: {
         componentName: 'OtherTest',
-        convert(data) {
-            return data
+        convert(data, childBlocks) {
+            return {...data, childBlocks}
         }
     },
 }
@@ -22,9 +22,9 @@ const components = {
 
 export default (data, method = 'get') => method === 'get'
     ? data.map(item => {
-        const { id, type, data } = item
+        const { id, type, data, childBlocks = [] } = item
         const { componentName, convert } = components[type]
-        return { id, type, componentName, data: convert(data) }
+        return { id, type, componentName, data: convert(data, childBlocks) }
     })
     : [
         {

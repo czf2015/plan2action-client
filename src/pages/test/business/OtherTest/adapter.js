@@ -1,18 +1,16 @@
-module.exports = (business) =>
-`const components = {
-${business.map(component => typeof component === 'string'
-? `    ${component}: {
-        componentName: '${component}',
+const components = {
+    Sec1: {
+        componentName: 'Sec1',
         convert(data, childBlocks) {
             return {...data, childBlocks}
         }
-    },`
-: `    ${component.name}: {
-        componentName: '${component.name}',
+    },
+    Sec2: {
+        componentName: 'Sec2',
         convert(data, childBlocks) {
             return {...data, childBlocks}
         }
-    },`).join('\n')}
+    },
 }
 
 
@@ -26,4 +24,4 @@ export default (data, method = 'get') => method === 'get'
         {
             // 
         }
-    ]`
+    ]

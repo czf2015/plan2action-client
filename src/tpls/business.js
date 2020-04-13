@@ -41,7 +41,7 @@ module.exports = (page, component, partials) => {
         return (
 `<template>
     <section id="${id}">
-        <component v-for="({id, type, componentName, data}) in list" :key="id || type" :is="componentName" :data="data" />
+        <component v-for="item in list" :key="item.id || item.type" :is="item.componentName" :data="item.data" />
     </section>
 </template>
 
@@ -66,10 +66,10 @@ ${partials.map(partial => typeof partial === 'string'
             }
         },
 
-        data() {
-            return {
-                list: adapter(this.data)
-            };
+        computed: {
+            list() {
+                return adapter(this.data.childBlocks)
+            }
         },
 
         mounted() {

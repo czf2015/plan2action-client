@@ -1,6 +1,6 @@
 <template>
     <Layout :loading="loading">
-        <component v-for="({id, type, componentName, data}) in list" :key="id || type" :is="componentName" :data="data" />
+        <component v-for="item in list" :key="item.id || item.type" :is="item.componentName" :data="item.data" />
     </Layout>
 </template>
 
