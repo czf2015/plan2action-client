@@ -1,9 +1,14 @@
 module.exports = (business) =>
 `const components = {
-${business.filter(component => typeof component === 'string')
-    .map(component => 
-`    ${component}: {
+${business.map(component => typeof component === 'string'
+? `    ${component}: {
         componentName: '${component}',
+        convert(data) {
+            return data
+        }
+    },`
+: `    ${component.name}: {
+        componentName: '${component.name}',
         convert(data) {
             return data
         }

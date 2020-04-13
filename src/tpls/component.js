@@ -46,9 +46,11 @@ module.exports = (component, partials) => {
 
     export default {
         components: {
-${partials.filter(component => typeof component === 'string')
-    .map(componentName => `
-            ${componentName}: () => import('./partials/${componentName}'),`
+${partials.map(partial => typeof partial === 'string'
+    ? `
+            ${partial}: () => import('./partials/${partial}'),`
+    : `
+            ${partial.name}: () => import('./partials/${partial.name}'),`
 ).join('')}
         },
 

@@ -15,9 +15,11 @@ module.exports = (page, components) =>
     export default {
         components: {
             Layout,
-${components.filter(component => typeof component === 'string')
-    .map(componentName => `
-            ${componentName}: () => import('./business/${componentName}'),`
+${components.map(component => typeof component === 'string'
+    ? `
+            ${component}: () => import('./business/${component}'),`
+    : `
+            ${component.name}: () => import('./business/${component.name}'),`
 ).join('')}
         },
 

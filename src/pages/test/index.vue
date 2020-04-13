@@ -17,6 +17,7 @@
 
             Banner: () => import('./business/Banner'),
             Test: () => import('./business/Test'),
+            OtherTest: () => import('./business/OtherTest'),
         },
 
         data() {
