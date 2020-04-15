@@ -10,7 +10,7 @@ const h = (...components) => components.reduce((page, component) => `${page}-${c
 
 function run(raw) {
     const {page, business} = raw
-    const relative = `${__dirname}/../../pages/${page}`
+    const relative = `${__dirname}/../../src/pages/${page}`
     mkdirp(`${relative}/business`, err => {
         fs.writeFile(`${relative}/index.vue`, pageTpl(page, business), console.log)
         fs.writeFile(`${relative}/adapter.js`, adapterTpl(business), console.log)

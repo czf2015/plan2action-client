@@ -33,7 +33,6 @@
       return {
         list: [],
         loading: false,
-        show: false,
       };
     },
 

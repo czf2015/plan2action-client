@@ -26,8 +26,7 @@ ${components.map(component => typeof component === 'string'
         data() {
             return {
             list: [],
-            loading: false,
-            show: false,
+                loading: false,
             };
         },
 

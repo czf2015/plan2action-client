@@ -2,16 +2,18 @@ import Model from "./Model";
 
 export default {
     ...Model,
-    display: '',
+    display: '', // d
     float: '', // none | left | right | inherit
     position: '', // static | relative | absolute | fixed
-    top: '',
-    left: '',
+    top: '', // t 
+    left: '', // l
+    bottom: '', // b
+    right: '', // r
     clip: '', // 裁剪绝对定位元素
-    margin: '0',
-    padding: '0',
-    width: '0',
-    height: '0',
+    margin: '0', // m
+    padding: '0', // p
+    width: '0', // w
+    height: '0', // h
     font: {
         family: '',
         varant: '',
@@ -56,7 +58,7 @@ export default {
         decoration: '',
         shadow: '',
     },
-    background: {
+    background: { // bg
         color: '',
         image: '',
         position: '',
@@ -67,9 +69,9 @@ export default {
         size: '', // contain
         default: 'transparent'
     },
-    border: '',
+    border: '', // bd
     outline: '',
-    color: 'inherit',
+    color: 'inherit', // c
     opacity: '1', // 透明度
     visibility: 'visible', // 隐藏元素时会占据页面上的空间
     transform: 'scale(1, 1)', // 横纵缩放比

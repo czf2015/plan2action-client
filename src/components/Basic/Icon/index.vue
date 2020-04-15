@@ -6,14 +6,15 @@
 <script>
 export default {
   components: {
-    heart: () => import("./heart"),
-    panda: () => import("./panda")
+    heart: () => import("./Heart"),
+    panda: () => import("./Panda"),
+    close: () => import("./Close"),
   },
 
   props: {
     type: {
       type: String,
-      default: "heart"
+      default: "close"
     },
     width: {
       type: String,

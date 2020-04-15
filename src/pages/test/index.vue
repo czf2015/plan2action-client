@@ -23,8 +23,7 @@
         data() {
             return {
             list: [],
-            loading: false,
-            show: false,
+                loading: false,
             };
         },
 

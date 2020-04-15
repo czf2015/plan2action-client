@@ -7,6 +7,8 @@
     export default {
         components: {
             Demo: () => import('./Demo'),
+            IconDemo: () => import('./Icon'),
+            ButtonDemo: () => import('./Button'),
 
             Badge: () => import('@/components/Basic/Badge'),
             Button: () => import('@/components/Basic/Button'),
