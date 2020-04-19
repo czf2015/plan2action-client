@@ -6,14 +6,6 @@ export default {
     base: '',// process.env.BASE_URL,
     routes: [
         {
-            path: '/test',
-            name: 'test',
-            component: () => import('@/pages/test'),
-            meta: {
-                requiresAuth: false,
-            },
-        },
-        {
             path: '',
             name: 'home',
             component: Home,

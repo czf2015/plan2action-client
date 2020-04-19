@@ -5,6 +5,7 @@
   |_Figure
   |_Icon
   |_Text
+  |_View
 
 2. Date
   |_Calendar

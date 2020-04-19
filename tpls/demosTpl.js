@@ -7,7 +7,6 @@ module.exports = categories =>
 <script>
 export default {
     components: {
-        Demo: () => import('./Demo'),
 ${categories
     .map(({category, children}) => children
         .map(componentName => `        ${componentName}: () => import('@/components/${category}/${componentName}'),`)

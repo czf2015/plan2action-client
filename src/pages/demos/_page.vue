@@ -4,7 +4,7 @@
 
 
 <script>
-    import Demo from '@/demos'
+    import Demo from '@/components/Demo'
     // import image from 'https://cambrian-images.cdn.bcebos.com/ac86102cf9a621feb4dad62af69923ae_1540266670849636.jpeg'
 
     export default {

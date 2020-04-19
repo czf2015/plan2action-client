@@ -1,5 +1,5 @@
 const fs = require('fs')
-const render = require(`${__dirname}/../tpls/demosTpl`)
+const render = require(`${__dirname}/../../tpls/demosTpl`)
 
 const dst = `${__dirname}`
 const separator = '\n'
@@ -27,7 +27,7 @@ function run(dst, separator, prefix) {
 
     switch (process.argv[2] || 'all') {
         case 'demos':
-            fs.writeFileSync(`${dst}/../demos/index.vue`, render(categories))
+            fs.writeFileSync(`${dst}/Demo.vue`, render(categories))
             break
         case 'categories':
             fs.writeFileSync(`${dst}/categories.json`, JSON.stringify(categories))
@@ -38,7 +38,7 @@ function run(dst, separator, prefix) {
         case 'all':
             console.log('all')
             fs.writeFileSync(`${dst}/categories.json`, JSON.stringify(categories))
-            fs.writeFileSync(`${dst}/../demos/index.vue`, render(categories))
+            fs.writeFileSync(`${dst}/Demo.vue`, render(categories))
             fs.writeFileSync(`${dst}/README.md`, handle(categories, separator, prefix))
             break
         default:
