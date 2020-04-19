@@ -77,3 +77,7 @@ export function repeat(str, n) {
     }
     return res
 }
+
+export function reverse(str) {
+    return str.split('').reverse().join('')
+}

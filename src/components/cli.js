@@ -1,5 +1,5 @@
 const fs = require('fs')
-const render = require(`${__dirname}/../tpls/demos`)
+const render = require(`${__dirname}/../tpls/demosTpl`)
 
 const dst = `${__dirname}`
 const separator = '\n'

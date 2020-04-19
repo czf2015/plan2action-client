@@ -39,6 +39,7 @@
 .icon--close:hover::before {
     transform: rotate(180deg);
 }
+
 .icon--close:hover::after {
     transform: rotate(180deg);
 }

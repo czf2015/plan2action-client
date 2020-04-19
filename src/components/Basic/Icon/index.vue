@@ -6,15 +6,14 @@
 <script>
 export default {
   components: {
-    heart: () => import("./Heart"),
-    panda: () => import("./Panda"),
-    close: () => import("./Close"),
+    Default: () => import('./Default'),
+    Close: () => import("./Close"),
   },
 
   props: {
     type: {
       type: String,
-      default: "close"
+      default: "default"
     },
     width: {
       type: String,
@@ -35,6 +34,9 @@ export default {
     rotate: {
       type: Number,
       default: 0
+    },
+    src: {
+      type: String
     }
   }
 };
