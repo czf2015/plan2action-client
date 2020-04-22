@@ -6,6 +6,7 @@
   |_Icon
   |_Text
   |_View
+  |_Circle
 
 2. Date
   |_Calendar

@@ -1,0 +1,18 @@
+.circle {
+    border-radius: 50%;
+}
+
+.circle::before{
+    display: block;
+    padding-top: 100%;
+    content: "";
+}
+
+.chip {
+    min-width: 60px;
+    width: 60px;
+    line-height: 2.6;
+    color: #fff;
+    border-radius: 1.3em / 50%;
+}
+

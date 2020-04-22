@@ -1,0 +1,17 @@
+:root {
+    --partical-color: #FF4081;
+    --primary-color: #1976D2;
+    --secondary-color: #424242;
+    --font-size: 100px;
+    --color: inherit;
+    --background-color: transparent;
+    --margin: 0;
+    --padding: 0;
+    --border-radius: 5px;
+    --xs: 640;
+    --sm: 960;
+    --md: 1280;
+    --lg: 1920;
+    --xl: 2560;
+    --turn-deg: 360deg;
+}

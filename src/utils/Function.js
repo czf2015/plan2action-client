@@ -96,3 +96,7 @@ chainAsync([
 export function choose(x, y) {
     return (op) => op ? x : y
 }
+
+export function noop() {
+    
+}

@@ -1,0 +1,50 @@
+.primary,
+.secondary,
+.accent,
+.info,
+.warning,
+.success,
+.error {
+    color: #fff;
+}
+
+.primary.light {
+    background-color: #1976D2;
+}
+.primary.dark {
+    background-color: #2196F3;
+}
+
+.secondary.light {
+    background-color: #424242;
+}
+.secondary.dark {
+    background-color: #424242;
+}
+
+.accent.light {
+    background-color: #82B1FF;
+}
+.accent.dark {
+    background-color: #FF4081;
+}
+
+.info {
+    background-color: #2196F3;
+}
+
+.warning {
+    background-color: #FB8C00;
+}
+
+.success {
+    background-color: #4CAF50;
+}
+
+.error {
+    background-color: #FF5252;
+}
+
+.disable {
+    background-color: var(--secondary-color);
+}

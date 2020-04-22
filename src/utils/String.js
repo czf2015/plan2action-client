@@ -81,3 +81,13 @@ export function repeat(str, n) {
 export function reverse(str) {
     return str.split('').reverse().join('')
 }
+
+// 下划线转换驼峰
+export function toHump(name) {
+    return name.replace(/_(\w)/g, (all, letter) => letter.toUpperCase())
+}
+
+// 驼峰转换下划线
+export function toLine(name) {
+    return name.replace(/([A-Z])/g, "_$1").toLowerCase()
+}

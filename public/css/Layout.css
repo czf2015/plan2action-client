@@ -124,16 +124,45 @@
     display: flex;
 }
 
-.fl-x {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    overflow: auto;
+.scroll-x {
+    overflow-x: auto;
 }
 
-.fl-y {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+.scroll-y {
+    overflow-y: auto;
+}
+
+.badge {
+    margin-top: -5px;
+    margin-right: 6px;
+    width: 50px;
+    font-size: 12px;
+    transform: scale(.5);
+    color: #fff;
+    background-color: red;
+}
+
+.icon-xs {
+    width: 16px;
+    height: auto;
+}
+
+.icon-sm {
+    width: 24px;
+    height: auto;
+}
+
+.icon {
+    width: 32px;
+    height: auto;
+}
+
+.icon-lg {
+    width: 48px;
+    height: auto;
+}
+
+.icon-xl {
+    width: 64px;
+    height: auto;
 }

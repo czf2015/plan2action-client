@@ -64,5 +64,18 @@ export default {
 </script>
 
 
-<style lang="less" scoped>
+<style scoped>
+.button {
+  display: inline-block;
+  padding: 1em 2em;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  font-size: .28rem;
+  box-shadow: 0 2px 25px rgba(204, 17, 79, 0.5);
+  outline: 0;
+  transition: transform ease-in 0.1s, background-color ease-in 0.1s,
+    box-shadow ease-in 0.25s;
+}
 </style>

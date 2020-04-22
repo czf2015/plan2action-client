@@ -1,6 +1,6 @@
 <template>
-  <figure class="figure" :style="{width}">
-    <img :src="src" />
+  <figure class="figure">
+    <img :src="src" :width="width" :height="height" />
     <figcaption>{{desc}}</figcaption>
   </figure>
 </template>
@@ -11,10 +11,8 @@ export default {
   props: {
     src: String,
     desc: String,
-    width: {
-      type: String,
-      default: "auto"
-    }
+    width: String,
+    height: String
   },
 };
 </script>
@@ -22,10 +20,11 @@ export default {
 
 <style lang="less" scoped>
 .figure {
-  font-size: 0.24rem;
+  display: flex;
+  flex-direction: column;
 
   img {
-    width: 100%;
+    margin: auto;
   }
 
   figcaption {

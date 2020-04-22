@@ -1,5 +1,5 @@
 <template>
-    <span class="icon" :style="{ backgroundImage: `url(${src})` }" />
+    <img class="icon" :src="src" />
 </template>
 
 

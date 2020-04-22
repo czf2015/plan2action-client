@@ -16,7 +16,9 @@ export default {
 @import "/css/Reset.css";
 @import "/css/Layout.css";
 @import "/css/Animate.css";
-@import "/css/Theme.css";
+@import "/css/Themes.css";
+@import "/css/Shapes.css";
+@import "/css/Variables.css";
 
 html {
   font-size: 50px;
