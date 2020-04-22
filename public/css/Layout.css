@@ -142,27 +142,23 @@
     background-color: red;
 }
 
-.icon-xs {
-    width: 16px;
-    height: auto;
-}
-
-.icon-sm {
-    width: 24px;
-    height: auto;
-}
-
 .icon {
     width: 32px;
     height: auto;
 }
 
-.icon-lg {
-    width: 48px;
-    height: auto;
+.icon.xs {
+    width: 16px;
 }
 
-.icon-xl {
+.icon.sm {
+    width: 24px;
+}
+
+.icon.lg {
+    width: 48px;
+}
+
+.icon.xl {
     width: 64px;
-    height: auto;
 }

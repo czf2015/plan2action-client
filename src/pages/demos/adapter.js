@@ -23,12 +23,12 @@ export default {
         },
         style: 'font-size: 12px; line-height: 2;'
     },
-    
+
     Icon: {
         props: {
             src: '/favicon.ico',
         },
-        // classNames: 'spin',
+        classNames: 'spin xl',
         style: "transform: rotateZ(180deg)"
     }
 }
