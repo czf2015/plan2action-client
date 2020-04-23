@@ -75,15 +75,21 @@ export function equal(a, b) {
     return result
 }
 
-export function extend(obj, props) {
-    for (var i in props) obj[i] = props[i];
-    return obj;
+// export function extend(obj, props) {
+//     for (var i in props) obj[i] = props[i];
+//     return obj;
+// }
+
+export function mixin(target, source) {
+    for (let key in source) {
+        target[key] = source[key]
+    }
 }
 
 export function filter(origin, entries) {
     const r = {}
     for (let key in origin) {
-        const entry = entries[key]
+        const entry = entries[key] // boolean | string
         if (typeof entry === 'string') {
             if (origin[key][entry]) {
                 Object.assign(r, origin[key][entry])
