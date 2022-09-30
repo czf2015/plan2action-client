@@ -12,7 +12,7 @@
     "axios": "^0.19.2",
     "babel-runtime": "^6.26.0",
     "core-js": "^3.6.4",
-    "d3": "^5.15.0",
+    "d3": "^7.6.1",
     "graphql": "^15.0.0",
     "immutable": "^4.0.0-rc.12",
     "monaco-editor": "^0.20.0",
